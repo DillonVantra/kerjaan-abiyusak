@@ -9,21 +9,22 @@ if (isset($_POST['simpan'])) {
 	$suhu = $_POST['suhu'];
 	$nama = $_SESSION['username'];
 	$text = $tanggal . "," . $jam . "," . $lokasi . "," . $suhu . "</tr> \n";
-	$data = "catatan\$nama.txt";
+	$data = "catatan/$nama.txt";
 	$dirname = dirname($data);
-	if (is_dir($dirname)) {
+	if (!is_dir($dirname)) {
 		mkdir($dirname, 0755, true);
 	}
+	$alert = "Catatan berhasil disimpan";
 	$fp = fopen($data, 'a+');
 	if (fwrite($fp, $text)) {
-		echo '<script>alert("Catatan Berhasil disimpan!");</script>';
+		echo "<script type='text/javascript'>alert('$alert');</script>";
 	}
 }
 ?>
+
 <html>
 
 <body>
-
 	<table border="1" align="center" width="50%" height="40%">
 		<td>
 			<form action="" method="POST">
@@ -51,7 +52,6 @@ if (isset($_POST['simpan'])) {
 				</table>
 			</form>
 		</td>
-
 	</table>
 </body>
 
