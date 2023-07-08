@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if (password_verify($nik, $hashedNik)) {
 				session_start();
 				$_SESSION['username'] = $nama;
-				header("Location: home.php");
+				header("location: home.php");
 				exit();
 			} else {
 				echo '<script>alert("NIK atau Nama Anda Salah! Silahkan isi kembali.");</script>';
