@@ -1,23 +1,39 @@
 <?php
 include "header.php";
+include "koneksi.php";
 session_start();
 
-if (isset($_POST['simpan'])) {
-	$tanggal = $_POST['tanggal'];
-	$jam = $_POST['jam'];
-	$lokasi = $_POST['lokasi'];
-	$suhu = $_POST['suhu'];
-	$nama = $_SESSION['username'];
-	$text = $tanggal . "," . $jam . "," . $lokasi . "," . $suhu . "</tr> \n";
-	$data = "catatan/$nama.txt";
-	$dirname = dirname($data);
-	if (!is_dir($dirname)) {
-		mkdir($dirname, 0755, true);
-	}
-	$alert = "Catatan berhasil disimpan";
-	$fp = fopen($data, 'a+');
-	if (fwrite($fp, $text)) {
-		echo "<script type='text/javascript'>alert('$alert');</script>";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	if (isset($_POST['simpan'])) {
+		$tanggal = $_POST['tanggal'];
+		$jam = $_POST['jam'];
+		$lokasi = $_POST['lokasi'];
+		$suhu = $_POST['suhu'];
+		$nama = $_SESSION['username'];
+		$text = $tanggal . "," . $jam . "," . $lokasi . "," . $suhu . "</tr> \n";
+		$data = "catatan/$nama.txt";
+
+		$dirname = dirname($data);
+		if (!is_dir($dirname)) {
+			mkdir($dirname, 0755, true);
+		}
+
+		$alert = "Catatan berhasil disimpan";
+		$fp = fopen($data, 'a+');
+
+		if (fwrite($fp, $text)) {
+			echo "<script type='text/javascript'>alert('$alert');</script>";
+		}
+
+		$insertToDb = "INSERT INTO (tanggal, jam, lokasi, suhu) VALUES ('tanggal', 'jam', 'lokasi', 'suhu')";
+
+		$result = mysqli_query($koneksi, $insertToDb);
+
+		if ($result) {
+			echo "Pengguna baru berhasil ditambahkan.";
+		} else {
+			echo "Terjadi kesalahan dalam menambahkan pengguna baru.";
+		}
 	}
 }
 ?>
