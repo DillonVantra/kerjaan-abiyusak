@@ -3,7 +3,7 @@ session_start();
 
 if (empty($_SESSION['nik'])) { ?>
 	<script type="text/javascript">
-		alert('Maaf Anda Belum Melakukan Login.');
+		alert('!!! Maaf Anda Belum Melakukan Login.');
 		window.location.assign('index.php');
 	</script>
 <?php }
@@ -70,14 +70,14 @@ if (empty($_SESSION['nik'])) { ?>
 			<!-- Nav Item - Charts -->
 			<li class="nav-item">
 				<a class="nav-link" href="?url=tulis_catatan">
-					<i class="fas fa-fw fa-clone"></i>
-					<span>Tulis Catatan / Perjalanan</span></a>
+					<i class="fas fa-fw fa-pen"></i>
+					<span>Tulis Catatan Perjalanan</span></a>
 			</li>
 
 			<!-- Nav Item - Tables -->
 			<li class="nav-item">
 				<a class="nav-link" href="?url=catatan_perjalanan">
-					<i class="fas fa-fw fa-book"></i>
+					<i class="fas fa-fw fa-table"></i>
 					<span>Catatan Perjalanan</span></a>
 			</li>
 
@@ -116,22 +116,22 @@ if (empty($_SESSION['nik'])) { ?>
 					<!-- Page Heading -->
 					<div class="mb-4 text-gray-800">
 						<?php
-						if (!empty($_GET['url'])) {
-							switch ($_GET['url']) {
+						$url = @$_GET['url'];
+						if (!empty($url)) {
+							switch ($url) {
 								case 'tulis_catatan':
 									include 'tulis_catatan.php';
 									break;
 								case 'catatan_perjalanan':
 									include 'catatan_perjalanan.php';
 									break;
-
 								default:
 									echo '<h3>Halaman Tidak Ditemukan</h3>';
 									break;
 							}
 						} else {
 							echo 'Selamat Datang di Website Peduli Diri, Dimana Website ini Digunakan untuk Mencatat Perjalanan <br>';
-							echo '<br>Anda Login Sebagai : ';
+							echo '<br> <h5>Anda Login Sebagai :</h5>';
 							echo '<h4>' . $_SESSION['nama_lengkap'] . '</h4>';
 						}
 						?>
