@@ -14,8 +14,8 @@
         <input name="tanggal" type="date" required class="form-control" placeholder="Masukkan Tanggal">
       </div>
       <div class="form-group">
-        <label for="">Pilih Jam</label>
-        <input name="jam" type="time" required class="form-control" placeholder="Masukkan Jam">
+        <label for="">Pilih Waktu</label>
+        <input name="waktu" type="time" required class="form-control" placeholder="Masukkan Jam">
       </div>
       <div class="form-group">
         <label for="">Pilih Lokasi</label>
