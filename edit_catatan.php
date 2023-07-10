@@ -25,8 +25,8 @@ $value = mysqli_fetch_array($query);
         <input name="tanggal" type="date" required class="form-control" placeholder="Masukkan Tanggal" value="<?= $value['tanggal'] ?>">
       </div>
       <div class="form-group">
-        <label for="">Pilih Jam</label>
-        <input name="waktu" type="time" required class="form-control" placeholder="Masukkan Jam" value="<?= $value['waktu'] ?>">
+        <label for="">Pilih Waktu</label>
+        <input name="waktu" type="time" required class="form-control" placeholder="Masukkan Waktu" value="<?= $value['waktu'] ?>">
       </div>
       <div class="form-group">
         <label for="">Pilih Lokasi</label>
